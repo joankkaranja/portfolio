@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphic Design Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #004d40;
+        }
+        h1 {
+            text-align: center;
+            color: #00796b;
+            margin-top: 50px;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+            aspect-ratio: 3 / 4; /* Rectangular like posters */
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Shows full image */
+            display: block;
+            background-color: #fff;
+        }
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+        .modal-content img {
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            max-width: 500px; /* Reasonable viewable size, not zoomed */
+            max-height: 600px;
+        }
+        .modal-text {
+            color: white;
+            margin-top: 15px;
+        }
+        .close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .close:hover {
+            color: #ffb300;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .pagination a {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 10px 15px;
+            background-color: #ffb300;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .pagination a:hover {
+            background-color: #ffcc02;
+        }
+        .pagination .active {
+            background-color: #ffcc02;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-button">Back to Portfolio</a> <!-- Replace 'index.html' with your main portfolio page -->
+    </header>
+    <div class="container">
+        <h1>Graphic Design Portfolio</h1>
+        <p class="intro">Dive into my creative gallery! Each rectangular post shows the full image for easy preview. Click to view in a reasonable size with a blurred background for closer inspection. These are poster-like designs made with Adobe Illustrator, Canva, and Photoshop. Let's get inspired! 🎨✨</p>
+        
+        <div class="gallery">
+            <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=600&fit=crop', 'Concert Poster', 'A vibrant poster for a rock concert, featuring bold typography and dynamic illustrations. Tools: Adobe Illustrator')">
+                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=400&fit=crop" alt="Concert Poster">
+                <div class="overlay">
+                    <h3>Concert Poster</h3>
+                    <p>Click to view</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal('images/FIBRE.png', 'Movie Poster', 'An epic movie poster with cinematic effects and star-studded visuals. Tools: Photoshop')">
+                <img src="images/FIBRE.png" alt="Movie Poster">
+                <div class="overlay">
+                    <h3>Movie Poster</h3>
+                    <p>Click to view</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=600&fit=crop', 'Event Poster', 'A promotional poster for a community event, blending colors and icons for appeal. Tools: Canva')">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&h=400&fit=crop" alt="Event Poster">
+                <div class="overlay">
+                    <h3>Event Poster</h3>
+                    <p>Click to view</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=600&fit=crop', 'Art Exhibition Poster', 'A minimalist poster for an art show, highlighting abstract elements. Tools: Adobe Illustrator & Photoshop')">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=400&fit=crop" alt="Art Exhibition Poster">
+                <div class="overlay">
+                    <h3>Art Exhibition Poster</h3>
+                    <p>Click to view</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop', 'Festival Poster', 'A fun festival poster with playful graphics and seasonal themes. Tools: Canva')">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop" alt="Festival Poster">
+                <div class="overlay">
+                    <h3>Festival Poster</h3>
+                    <p>Click to view</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1489599735734-79b4d4c4b5b?w=500&h=600&fit=crop', 'Theater Poster', 'A dramatic theater poster with elegant fonts and stage-inspired imagery. Tools: Adobe Illustrator')">
+                <img src="https://images.unsplash.com/photo-1489599735734-79b4d4c4b5b?w=300&h=400&fit=crop" alt="Theater Poster">
+                <div class="overlay">
+                    <h3>Theater Poster</h3>
+                    <p>Click to view</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <img id="modalImage" src="" alt="Viewed Image" onerror="this.src='https://via.placeholder.com/500x600?text=Image+Not+Found'">
+                <div class="modal-text">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDesc"></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pagination">
+            <a href="graphic-design-page1.html" class="active">1</a>
+            <a href="graphic-design-page2.html">2</a>
+            <a href="graphic-design-page3.html">3</a>
+            <a href="graphic-design-page2.html">Next</a>
+        </div>
+    </div>
+
+    <script>
+        function openModal(src, title, desc) {
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            
+            modalImg.src = src;
+            modalTitle.innerText = title;
+            modalDesc.innerText = desc;
+            
+            modal.style.display = 'flex';
+            modalImg.onload = function() {
+                console.log('Image loaded successfully');
+            };
+            modalImg.onerror = function() {
+                console.log('Image failed to load');
+                this.src = 'https://via.placeholder.com/500x600?text=Image+Not+Found';
+            };
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
