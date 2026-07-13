@@ -1,0 +1,158 @@
+/* ==========================
+   RESPONSIVE HEADER
+========================== */
+
+.header-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 20px;
+}
+
+.logo h1{
+    margin:0;
+}
+
+.logo p{
+    margin:2px 0 0;
+    font-size:14px;
+}
+
+.menu-toggle{
+    display:none;
+    border:none;
+    background:none;
+    font-size:28px;
+    cursor:pointer;
+    color:#00796b;
+}
+
+nav{
+    display:flex;
+    gap:22px;
+    align-items:center;
+}
+
+nav a{
+    text-decoration:none;
+}
+
+/* ==========================
+   TABLETS
+========================== */
+
+@media(max-width:992px){
+
+.hero{
+    padding:70px 25px;
+}
+
+.hero h2{
+    font-size:2rem;
+}
+
+.quick-links{
+    gap:15px;
+}
+
+.link-card{
+    width:220px;
+}
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.menu-toggle{
+    display:block;
+}
+
+nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:white;
+
+    display:none;
+    flex-direction:column;
+    align-items:center;
+
+    padding:15px 0;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+nav.active{
+    display:flex;
+}
+
+nav a{
+    padding:14px;
+    width:100%;
+    text-align:center;
+}
+
+.hero{
+    margin:15px;
+    padding:55px 20px;
+}
+
+.hero h2{
+    font-size:1.8rem;
+}
+
+.hero p{
+    font-size:1rem;
+}
+
+.quick-links{
+    flex-direction:column;
+    align-items:center;
+}
+
+.link-card{
+    width:90%;
+    max-width:350px;
+}
+
+.btn{
+    display:inline-block;
+    width:auto;
+}
+
+}
+
+/* ==========================
+   VERY SMALL PHONES
+========================== */
+
+@media(max-width:480px){
+
+header{
+    padding:15px;
+}
+
+.logo h1{
+    font-size:24px;
+}
+
+.hero h2{
+    font-size:1.5rem;
+}
+
+.hero p{
+    font-size:.95rem;
+}
+
+footer{
+    font-size:14px;
+}
+
+}
